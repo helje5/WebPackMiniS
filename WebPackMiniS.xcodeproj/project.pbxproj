@@ -1,0 +1,391 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E82D8B9F1EF2C63900D41F22 /* JavaScriptParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82D8B981EF2C63900D41F22 /* JavaScriptParser.swift */; };
+		E82D8BA01EF2C63900D41F22 /* CSSLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82D8B9A1EF2C63900D41F22 /* CSSLoader.swift */; };
+		E82D8BA11EF2C63900D41F22 /* FileLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82D8B9B1EF2C63900D41F22 /* FileLoader.swift */; };
+		E82D8BA21EF2C63900D41F22 /* JSLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82D8B9C1EF2C63900D41F22 /* JSLoader.swift */; };
+		E82D8BA31EF2C63900D41F22 /* VueLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82D8B9D1EF2C63900D41F22 /* VueLoader.swift */; };
+		E82D8BA41EF2C63900D41F22 /* WebPack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82D8B9E1EF2C63900D41F22 /* WebPack.swift */; };
+		E82D8BB11EF2C8EE00D41F22 /* libWebPackMiniS.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E82D8B7D1EF2C30100D41F22 /* libWebPackMiniS.dylib */; };
+		E82D8BBA1EF2C91B00D41F22 /* JavaScriptTokenizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82D8BB81EF2C91B00D41F22 /* JavaScriptTokenizerTests.swift */; };
+		E82D8BBB1EF2C91B00D41F22 /* PackingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82D8BB91EF2C91B00D41F22 /* PackingTests.swift */; };
+		E82D8BC01EF2CAB900D41F22 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82D8BBF1EF2CAB900D41F22 /* Helpers.swift */; };
+		E82D8BC21EF2CB2B00D41F22 /* WebPackLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82D8BC11EF2CB2B00D41F22 /* WebPackLoader.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E82D8BB21EF2C8EE00D41F22 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E82D8B751EF2C30100D41F22 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E82D8B7C1EF2C30100D41F22;
+			remoteInfo = WebPackMiniS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E82D8B7D1EF2C30100D41F22 /* libWebPackMiniS.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libWebPackMiniS.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		E82D8B981EF2C63900D41F22 /* JavaScriptParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JavaScriptParser.swift; sourceTree = "<group>"; };
+		E82D8B9A1EF2C63900D41F22 /* CSSLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSSLoader.swift; sourceTree = "<group>"; };
+		E82D8B9B1EF2C63900D41F22 /* FileLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileLoader.swift; sourceTree = "<group>"; };
+		E82D8B9C1EF2C63900D41F22 /* JSLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSLoader.swift; sourceTree = "<group>"; };
+		E82D8B9D1EF2C63900D41F22 /* VueLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VueLoader.swift; sourceTree = "<group>"; };
+		E82D8B9E1EF2C63900D41F22 /* WebPack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebPack.swift; sourceTree = "<group>"; };
+		E82D8BA51EF2C63F00D41F22 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		E82D8BA61EF2C64400D41F22 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E82D8BA71EF2C8D200D41F22 /* TestData */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TestData; sourceTree = "<group>"; };
+		E82D8BAC1EF2C8EE00D41F22 /* WebPackMiniTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WebPackMiniTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E82D8BB81EF2C91B00D41F22 /* JavaScriptTokenizerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JavaScriptTokenizerTests.swift; sourceTree = "<group>"; };
+		E82D8BB91EF2C91B00D41F22 /* PackingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PackingTests.swift; sourceTree = "<group>"; };
+		E82D8BBD1EF2C9DF00D41F22 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Base.xcconfig; path = xcconfig/Base.xcconfig; sourceTree = "<group>"; };
+		E82D8BBF1EF2CAB900D41F22 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		E82D8BC11EF2CB2B00D41F22 /* WebPackLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebPackLoader.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E82D8B7A1EF2C30100D41F22 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E82D8BA91EF2C8ED00D41F22 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E82D8BB11EF2C8EE00D41F22 /* libWebPackMiniS.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E82D8B741EF2C30100D41F22 = {
+			isa = PBXGroup;
+			children = (
+				E82D8BA61EF2C64400D41F22 /* README.md */,
+				E82D8BA51EF2C63F00D41F22 /* Package.swift */,
+				E82D8B961EF2C63900D41F22 /* WebPackMiniS */,
+				E82D8BB71EF2C91B00D41F22 /* WebPackMiniSTests */,
+				E82D8BA71EF2C8D200D41F22 /* TestData */,
+				E82D8BBC1EF2C9D400D41F22 /* Configurations */,
+				E82D8B7E1EF2C30100D41F22 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E82D8B7E1EF2C30100D41F22 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E82D8B7D1EF2C30100D41F22 /* libWebPackMiniS.dylib */,
+				E82D8BAC1EF2C8EE00D41F22 /* WebPackMiniTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E82D8B961EF2C63900D41F22 /* WebPackMiniS */ = {
+			isa = PBXGroup;
+			children = (
+				E82D8B9E1EF2C63900D41F22 /* WebPack.swift */,
+				E82D8BC11EF2CB2B00D41F22 /* WebPackLoader.swift */,
+				E82D8B971EF2C63900D41F22 /* JavaScriptParser */,
+				E82D8B991EF2C63900D41F22 /* Loaders */,
+				E82D8BBF1EF2CAB900D41F22 /* Helpers.swift */,
+			);
+			name = WebPackMiniS;
+			path = Sources/WebPackMiniS;
+			sourceTree = "<group>";
+		};
+		E82D8B971EF2C63900D41F22 /* JavaScriptParser */ = {
+			isa = PBXGroup;
+			children = (
+				E82D8B981EF2C63900D41F22 /* JavaScriptParser.swift */,
+			);
+			path = JavaScriptParser;
+			sourceTree = "<group>";
+		};
+		E82D8B991EF2C63900D41F22 /* Loaders */ = {
+			isa = PBXGroup;
+			children = (
+				E82D8B9A1EF2C63900D41F22 /* CSSLoader.swift */,
+				E82D8B9B1EF2C63900D41F22 /* FileLoader.swift */,
+				E82D8B9C1EF2C63900D41F22 /* JSLoader.swift */,
+				E82D8B9D1EF2C63900D41F22 /* VueLoader.swift */,
+			);
+			path = Loaders;
+			sourceTree = "<group>";
+		};
+		E82D8BB71EF2C91B00D41F22 /* WebPackMiniSTests */ = {
+			isa = PBXGroup;
+			children = (
+				E82D8BB81EF2C91B00D41F22 /* JavaScriptTokenizerTests.swift */,
+				E82D8BB91EF2C91B00D41F22 /* PackingTests.swift */,
+			);
+			name = WebPackMiniSTests;
+			path = Tests/WebPackMiniSTests;
+			sourceTree = "<group>";
+		};
+		E82D8BBC1EF2C9D400D41F22 /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				E82D8BBD1EF2C9DF00D41F22 /* Base.xcconfig */,
+			);
+			name = Configurations;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		E82D8B7B1EF2C30100D41F22 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		E82D8B7C1EF2C30100D41F22 /* WebPackMiniS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E82D8B811EF2C30100D41F22 /* Build configuration list for PBXNativeTarget "WebPackMiniS" */;
+			buildPhases = (
+				E82D8B791EF2C30100D41F22 /* Sources */,
+				E82D8B7A1EF2C30100D41F22 /* Frameworks */,
+				E82D8B7B1EF2C30100D41F22 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WebPackMiniS;
+			productName = WebPackMiniS;
+			productReference = E82D8B7D1EF2C30100D41F22 /* libWebPackMiniS.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		E82D8BAB1EF2C8ED00D41F22 /* WebPackMiniTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E82D8BB41EF2C8EE00D41F22 /* Build configuration list for PBXNativeTarget "WebPackMiniTests" */;
+			buildPhases = (
+				E82D8BA81EF2C8ED00D41F22 /* Sources */,
+				E82D8BA91EF2C8ED00D41F22 /* Frameworks */,
+				E82D8BAA1EF2C8ED00D41F22 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E82D8BB31EF2C8EE00D41F22 /* PBXTargetDependency */,
+			);
+			name = WebPackMiniTests;
+			productName = WebPackMiniTests;
+			productReference = E82D8BAC1EF2C8EE00D41F22 /* WebPackMiniTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E82D8B751EF2C30100D41F22 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "ZeeZide GmbH";
+				TargetAttributes = {
+					E82D8B7C1EF2C30100D41F22 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+					E82D8BAB1EF2C8ED00D41F22 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 4GXF3JAMM4;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = E82D8B781EF2C30100D41F22 /* Build configuration list for PBXProject "WebPackMiniS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E82D8B741EF2C30100D41F22;
+			productRefGroup = E82D8B7E1EF2C30100D41F22 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E82D8B7C1EF2C30100D41F22 /* WebPackMiniS */,
+				E82D8BAB1EF2C8ED00D41F22 /* WebPackMiniTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E82D8BAA1EF2C8ED00D41F22 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E82D8B791EF2C30100D41F22 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E82D8BA11EF2C63900D41F22 /* FileLoader.swift in Sources */,
+				E82D8BC01EF2CAB900D41F22 /* Helpers.swift in Sources */,
+				E82D8BC21EF2CB2B00D41F22 /* WebPackLoader.swift in Sources */,
+				E82D8BA41EF2C63900D41F22 /* WebPack.swift in Sources */,
+				E82D8BA21EF2C63900D41F22 /* JSLoader.swift in Sources */,
+				E82D8BA01EF2C63900D41F22 /* CSSLoader.swift in Sources */,
+				E82D8B9F1EF2C63900D41F22 /* JavaScriptParser.swift in Sources */,
+				E82D8BA31EF2C63900D41F22 /* VueLoader.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E82D8BA81EF2C8ED00D41F22 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E82D8BBA1EF2C91B00D41F22 /* JavaScriptTokenizerTests.swift in Sources */,
+				E82D8BBB1EF2C91B00D41F22 /* PackingTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E82D8BB31EF2C8EE00D41F22 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E82D8B7C1EF2C30100D41F22 /* WebPackMiniS */;
+			targetProxy = E82D8BB21EF2C8EE00D41F22 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		E82D8B7F1EF2C30100D41F22 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E82D8BBD1EF2C9DF00D41F22 /* Base.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+			};
+			name = Debug;
+		};
+		E82D8B801EF2C30100D41F22 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E82D8BBD1EF2C9DF00D41F22 /* Base.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				MTL_ENABLE_DEBUG_INFO = NO;
+			};
+			name = Release;
+		};
+		E82D8B821EF2C30100D41F22 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E82D8B831EF2C30100D41F22 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		E82D8BB51EF2C8EE00D41F22 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 4GXF3JAMM4;
+				INFOPLIST_FILE = "$(SRCROOT)/xcconfig/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.alwaysrightinstitute.webpack.WebPackMiniTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		E82D8BB61EF2C8EE00D41F22 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 4GXF3JAMM4;
+				INFOPLIST_FILE = "$(SRCROOT)/xcconfig/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.alwaysrightinstitute.webpack.WebPackMiniTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E82D8B781EF2C30100D41F22 /* Build configuration list for PBXProject "WebPackMiniS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E82D8B7F1EF2C30100D41F22 /* Debug */,
+				E82D8B801EF2C30100D41F22 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E82D8B811EF2C30100D41F22 /* Build configuration list for PBXNativeTarget "WebPackMiniS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E82D8B821EF2C30100D41F22 /* Debug */,
+				E82D8B831EF2C30100D41F22 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E82D8BB41EF2C8EE00D41F22 /* Build configuration list for PBXNativeTarget "WebPackMiniTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E82D8BB51EF2C8EE00D41F22 /* Debug */,
+				E82D8BB61EF2C8EE00D41F22 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E82D8B751EF2C30100D41F22 /* Project object */;
+}
