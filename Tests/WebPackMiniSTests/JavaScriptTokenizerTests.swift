@@ -165,6 +165,22 @@ class JavaScriptTokenizerTests: XCTestCase {
     pos += 1
   }
   
+  func testTokenizeMainJS() {
+    let js = "import Vue from 'vue'\n" +
+             "import App from './App.vue'\n" +
+             "\n"
+    let data = Data(js.utf8)
+    let tokens = JavaScriptTokenizer.parseData(data)
+    
+    if verbose {
+      print("TOKENS:-----")
+      for token in tokens {
+        print("  \(token)")
+      }
+      print("------------")
+    }
+  }
+  
   func testRegex() {
     let js   = "var camelizeRE = /-(\\w)/g;\nvar camelize = "
     let data = Data(js.utf8)
@@ -236,4 +252,5 @@ class JavaScriptTokenizerTests: XCTestCase {
     let genData = tokens.javaScriptData
     XCTAssertEqual(data, genData)
   }
+  
 }
