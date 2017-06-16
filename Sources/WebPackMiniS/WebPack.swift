@@ -12,7 +12,7 @@ import struct Foundation.Data
 
 public class WebPack : LoaderContext {
   
-  let config : Configuration
+  public let config : Configuration
   
   var resources = [ String : Data ]()
   var modules   = [ Data ]()
@@ -184,9 +184,11 @@ public class WebPack : LoaderContext {
     return idx
   }
   
+  
   // MARK: - Deliver
   
-  func dataForFile(_ path: String) throws -> Data? { // TODO: directly stream
+  public func dataForFile(_ path: String) throws -> Data? {
+    // TODO: directly stream
     try regenerate()
     return resources[path]
   }
@@ -212,8 +214,7 @@ public class WebPack : LoaderContext {
                          filename: "bundle.js"),
       moduleRules: [
         LoadRule(pathExtensions: ["vue"],
-                 loader:  [ VueLoader.self ],
-                 options: [:]),
+                 loader:  [ VueLoader.self ]),
         LoadRule(pathExtensions: ["js"],
                  loader:  [ JSLoader.self ],
                  options: [ "exclude": "/node_modules/" ]),
@@ -222,8 +223,7 @@ public class WebPack : LoaderContext {
                  loader:  [ FileLoader.self ],
                  options: [ "name": "[name].[ext]?[hash]" ]),
         LoadRule(pathExtensions: ["css"],
-                 loader:  [ StyleLoader.self, CSSLoader.self ],
-                 options: [:])
+                 loader:  [ StyleLoader.self, CSSLoader.self ])
       ],
       resolvePathExtensionAliases: [
         "vue": "vue/dist/vue.esm.js"
@@ -239,30 +239,64 @@ public class WebPack : LoaderContext {
   
   public struct Configuration {
     
-    var baseURL        : URL
-    var entry          : URL
-    var output         : Output
+    public var baseURL     : URL
+    public var entry       : URL
+    public var output      : Output
     
-    var moduleRules    : [ LoadRule ] = []
+    public var moduleRules : [ LoadRule ]
     
-    var resolvePathExtensionAliases : [ String : String ] = [:]
+    public var resolvePathExtensionAliases : [ String : String ]
     
-    var devServer      = DevServerConfig()
+    public var devServer   : DevServerConfig
     
     // performance: { hints: false }
     // devtool:     '#eval-source-map'
+    
+    public init(baseURL     : URL,
+                entry       : URL,
+                output      : Output,
+                moduleRules : [ LoadRule ] = [],
+                resolvePathExtensionAliases : [ String : String ] = [:],
+                devServer   : DevServerConfig = DevServerConfig())
+    {
+      self.baseURL     = baseURL
+      self.entry       = entry
+      self.output      = output
+      self.moduleRules = moduleRules
+      self.resolvePathExtensionAliases = resolvePathExtensionAliases
+      self.devServer   = devServer
+    }
   }
   
   public struct Output {
-    var path       : String
-    var publicPath : String = "dist/"
-    var filename   : String = "build.js"
+    public var path       : String
+    public var publicPath : String
+    public var filename   : String
+    
+    public init(path       : String,
+                publicPath : String = "dist/",
+                filename   : String = "build.js")
+    {
+      self.path       = path
+      self.publicPath = publicPath
+      self.filename   = filename
+    }
   }
   
   public struct LoadRule {
-    var pathExtensions : [ String ] // in place of 'test' which takes a regex
-    var loader         : [ WebPackLoader.Type ]
-    var options        : [ String : Any ] = [ : ]
+    public var pathExtensions : [ String ]
+                                   // in place of 'test' which takes a regex
+    public var loader         : [ WebPackLoader.Type ]
+    public var options        : [ String : Any ] = [ : ]
+    
+    public init(pathExtensions : [ String ],
+                loader         : [ WebPackLoader.Type ],
+                options        : [ String : Any ] = [ : ])
+    {
+      self.pathExtensions = pathExtensions
+      self.loader         = loader
+      self.options        = options
+    }
     
     func matchesURL(_ url: URL) -> Bool {
       return pathExtensions.contains(url.pathExtension)
@@ -270,12 +304,21 @@ public class WebPack : LoaderContext {
   }
   
   public struct ResolveAlias {
-    var pathExtension  : String = "vue" //
+    public var pathExtension : String
+    
+    public init(pathExtension: String = "vue") {
+      self.pathExtension = pathExtension
+    }
   }
   
   public struct DevServerConfig {
-    let historyApiFallback = true
-    let noInfo             = true
+    public var historyApiFallback : Bool
+    public var noInfo             : Bool
+    
+    public init(historyApiFallback: Bool = true, noInfo: Bool = true) {
+      self.historyApiFallback = historyApiFallback
+      self.noInfo             = noInfo
+    }
   }
   
 }
