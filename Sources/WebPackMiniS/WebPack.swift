@@ -14,9 +14,9 @@ public class WebPack : LoaderContext {
   
   public let config : Configuration
   
-  var resources = [ String : Data ]()
-  var modules   = [ Data ]()
-  var modulePathToIndex = [ String : Int ]()
+  public var resources = [ String : Data ]()
+  var        modules   = [ Data ]()
+  var        modulePathToIndex = [ String : Int ]()
   
   struct FileProcessingInfo {
     let url : URL
