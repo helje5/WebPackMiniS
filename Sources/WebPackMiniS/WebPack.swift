@@ -137,11 +137,19 @@ public class WebPack : LoaderContext {
       return URL.resolve(fileURL: url, filePath: matches[0])
     }
     
-    // ./node_modules/vue/dist/vue.js
-    let nodeModuleDir = URL.resolve(fileURL: config.baseURL, filePath: "node_modules/")
-    let pkgDir = nodeModuleDir
+    
+    // TODO: I think we need to read package.json to determine the proper loc
+    //   ./node_modules/vue/dist/vue.js
+    // vs
+    //   ./node_modules/moment/moment.js
+    let nodeModuleDir = URL.resolve(fileURL: config.baseURL,
+                                    filePath: "node_modules/")
+    var pkgDir = nodeModuleDir
                    .appendingPathComponent(module)
                    .appendingPathComponent("dist")
+    if !fm.fileExists(atPath: pkgDir.path) { // HACK
+      pkgDir = nodeModuleDir.appendingPathComponent(module)
+    }
     
     guard let ls = try? fm.contentsOfDirectory(atPath: pkgDir.path)
      else { throw Error.CouldNotLoadDirectory(pkgDir) }
