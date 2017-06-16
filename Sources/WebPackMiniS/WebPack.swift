@@ -138,7 +138,7 @@ public class WebPack : LoaderContext {
     }
     
     // ./node_modules/vue/dist/vue.js
-    let nodeModuleDir = URL.resolve(fileURL: config.baseURL, filePath: "node_modules")
+    let nodeModuleDir = URL.resolve(fileURL: config.baseURL, filePath: "node_modules/")
     let pkgDir = nodeModuleDir
                    .appendingPathComponent(module)
                    .appendingPathComponent("dist")
@@ -331,10 +331,36 @@ extension URL {
     #if swift(>=3.1) // This is really a `if #available(macOS 10.11, *)`
       return URL(fileURLWithPath: path, relativeTo: url)
     #else // Swift 3.0.2
-      guard let url = url, !url.path.isEmpty, !path.hasPrefix("/")
+      guard var url = url, !url.path.isEmpty, !path.hasPrefix("/")
        else { return URL(fileURLWithPath: path) }
       guard !path.isEmpty else { return url }
-      return url.appendingPathComponent(path)
+      
+      // print("resolve \(path) against \(url.path as Optional)")
+      
+      // file:///abc/def/main.js
+      // ./Vue
+      
+      // Funny: Even if the url ends in /, the path may not contain it
+      if !url.absoluteString.hasSuffix("/") { // this is actually what happens
+        // FIXME: should we check isDir in filesystem?
+        url = url.deletingLastPathComponent()
+      }
+      
+      var processedPath = path
+      while processedPath.hasPrefix("../") {
+        let idx = processedPath.index(processedPath.startIndex, offsetBy: 3)
+        processedPath = processedPath.substring(from: idx)
+        url = url.deletingLastPathComponent()
+      }
+      
+      if processedPath.hasPrefix("./") {
+        let idx = processedPath.index(processedPath.startIndex, offsetBy: 2)
+        processedPath = processedPath.substring(from: idx)
+      }
+      
+      let result = url.appendingPathComponent(processedPath)
+      // print("  got: \(processedPath) \(result)")
+      return result
     #endif
   }
 }

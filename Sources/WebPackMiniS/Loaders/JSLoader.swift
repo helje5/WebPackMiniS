@@ -79,11 +79,20 @@ open class JSLoader : WebPackLoader {
       }
       else if let impstmt = tokens.matchImportCall(i) {
         i = impstmt.nextIndex
-        guard !impstmt.module.isEmpty else { continue }
+        guard !impstmt.module.isEmpty
+         else {
+          print("no module in import statement?: \(impstmt)")
+          continue
+         }
         
-        guard let slot =
-                    try? context.slotForModule(impstmt.module, relativeTo: url)
-         else { continue }
+        let slot : Int
+        do {
+          slot = try context.slotForModule(impstmt.module, relativeTo: url)
+        }
+        catch {
+          print("got no slot for \(impstmt.module): \(error)")
+          continue
+        }
         
         if let _ = impstmt.idVariable, let from = impstmt.kwFrom {
           // import <id> from qstring => var <id> = __webpack_require__ ( qstring )
@@ -97,7 +106,7 @@ open class JSLoader : WebPackLoader {
           tokens[impstmt.kwImport]   = .id(idWebpackRequire)
           tokens[impstmt.qsModule]   = .other(Data("(\(slot))".utf8)) // hack
         }
-          
+        
         modCount += 1
       }
       else if let expstmt = tokens.matchExport(i) {
