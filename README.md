@@ -1,4 +1,5 @@
-<h2>WebPackMiniS</h2>
+## WebPackMiniS
+
 ![Swift3](https://img.shields.io/badge/swift-3-blue.svg)
 ![tuxOS](https://img.shields.io/badge/os-macOS-green.svg?style=flat)
 ![macOS](https://img.shields.io/badge/os-macOS-green.svg?style=flat)
