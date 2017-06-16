@@ -3,7 +3,7 @@
 ![Swift3](https://img.shields.io/badge/swift-3-blue.svg)
 ![tuxOS](https://img.shields.io/badge/os-tuxOS-green.svg?style=flat)
 ![macOS](https://img.shields.io/badge/os-macOS-green.svg?style=flat)
-![Travis](https://travis-ci.org/AlwaysRightInstitute/WebPackMiniS.svg?branch=develop)
+![Travis](https://travis-ci.org/AlwaysRightInstitute/WebPackMiniS.svg?branch=master)
 
 This is a tiny version of the
 [webpack](https://webpack.js.org/)
