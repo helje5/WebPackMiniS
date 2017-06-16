@@ -117,7 +117,7 @@ public class WebPack : LoaderContext {
     let fm = FileManager.default
     
     if module.hasPrefix(".") {
-      let fileURL = URL(fileURLWithPath: module, relativeTo: url)
+      let fileURL = URL.resolve(fileURL: url, filePath: module)
       if fm.fileExists(atPath: module) { return fileURL }
       
       let dirURL = fileURL.deletingLastPathComponent()
@@ -134,12 +134,11 @@ public class WebPack : LoaderContext {
         log.warn("multiple matches for module:", module, "in:", dirURL.path)
       }
       #endif
-      return URL(fileURLWithPath: matches[0], relativeTo: url)
+      return URL.resolve(fileURL: url, filePath: matches[0])
     }
     
     // ./node_modules/vue/dist/vue.js
-    let nodeModuleDir = URL(fileURLWithPath: "node_modules",
-                            relativeTo: config.baseURL)
+    let nodeModuleDir = URL.resolve(fileURL: config.baseURL, filePath: "node_modules")
     let pkgDir = nodeModuleDir
                    .appendingPathComponent(module)
                    .appendingPathComponent("dist")
@@ -165,8 +164,8 @@ public class WebPack : LoaderContext {
     else {
       choice = matches[0]
     }
-    
-    return URL(fileURLWithPath: choice, relativeTo: pkgDir)
+
+    return URL.resolve(fileURL: pkgDir, filePath: choice)
   }
   
   public func slotForModule(_ module: String, relativeTo relurl: URL?)
@@ -207,7 +206,7 @@ public class WebPack : LoaderContext {
     
     let config = Configuration(
       baseURL :   pathURL,
-      entry   :   URL(fileURLWithPath: entry, relativeTo: pathURL),
+      entry   :   URL.resolve(fileURL: pathURL, filePath: entry),
       output  :   Output(path: pathURL.appendingPathComponent("dist").path,
                          publicPath: "dist/",
                          filename: "bundle.js"),
@@ -279,6 +278,22 @@ public class WebPack : LoaderContext {
     let noInfo             = true
   }
   
+}
+
+
+// MARK: - Compat
+
+extension URL {
+  static func resolve(fileURL url: URL?, filePath path: String) -> URL {
+    #if swift(>=3.1) // This is really a `if #available(macOS 10.11, *)`
+      return URL(fileURLWithPath: path, relativeTo: url)
+    #else // Swift 3.0.2
+      guard let url = url, !url.path.isEmpty, !path.hasPrefix("/")
+       else { return URL(fileURLWithPath: path) }
+      guard !path.isEmpty else { return url }
+      return url.appendingPathComponent(path)
+    #endif
+  }
 }
 
 
