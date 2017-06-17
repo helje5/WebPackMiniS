@@ -10,6 +10,7 @@ import Foundation
 
 open class CSSLoader : WebPackLoader {
   // TODO: process @import statements in CSS
+  // e.g.: @import url("../node_modules/semantic-ui-css/semantic.min.css");
   
   public init() {
   }
