@@ -118,7 +118,7 @@ public class WebPack : LoaderContext {
     
     if module.hasPrefix(".") {
       let fileURL = URL.resolve(fileURL: url, filePath: module)
-      if fm.fileExists(atPath: module) { return fileURL }
+      if fm.fileExists(atPath: fileURL.path) { return fileURL }
       
       let dirURL = fileURL.deletingLastPathComponent()
       let fn     = fileURL.lastPathComponent
