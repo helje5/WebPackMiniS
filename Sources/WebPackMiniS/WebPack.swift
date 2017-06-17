@@ -6,9 +6,7 @@
 //  Copyright © 2017 ZeeZide GmbH. All rights reserved.
 //
 
-import class  Foundation.FileManager
-import struct Foundation.URL
-import struct Foundation.Data
+import Foundation
 
 public class WebPack : LoaderContext {
   
@@ -124,7 +122,9 @@ public class WebPack : LoaderContext {
       let fn     = fileURL.lastPathComponent
       
       guard let ls = try? fm.contentsOfDirectory(atPath: dirURL.path)
-       else { throw Error.CouldNotLoadDirectory(dirURL) }
+       else {
+        throw Error.CouldNotLoadDirectory(dirURL)
+      }
       
       let matches = ls.filter { $0.hasPrefix(fn) }
       guard !matches.isEmpty else { throw Error.DidNotFindModule(module) }
@@ -144,6 +144,16 @@ public class WebPack : LoaderContext {
     //   ./node_modules/moment/moment.js
     let nodeModuleDir = URL.resolve(fileURL: config.baseURL,
                                     filePath: "node_modules/")
+    
+    // lookup as direct path into node_modules ('semantic-ui-css/semantic.css')
+    let absDir = URL.resolve(fileURL: nodeModuleDir, filePath: module)
+    var isDirectory : ObjCBool = false
+    if fm.fileExists(atPath: absDir.path, isDirectory: &isDirectory),
+       !isDirectory.boolValue
+    {
+      return absDir
+    }
+    
     var pkgDir = nodeModuleDir
                    .appendingPathComponent(module)
                    .appendingPathComponent("dist")
@@ -152,7 +162,9 @@ public class WebPack : LoaderContext {
     }
     
     guard let ls = try? fm.contentsOfDirectory(atPath: pkgDir.path)
-     else { throw Error.CouldNotLoadDirectory(pkgDir) }
+     else {
+      throw Error.CouldNotLoadDirectory(pkgDir)
+     }
     
     let matches = ls.filter { $0.hasPrefix(module + ".") }
     // console.log("MATCHES:", matches, pkgDir, module)
@@ -373,6 +385,9 @@ extension URL {
   }
 }
 
+fileprivate extension Bool { // Linux compat
+  var boolValue : Bool { return self }
+}
 
 // MARK: - Scripts
 

@@ -69,9 +69,14 @@ open class JSLoader : WebPackLoader {
         
         // TODO: WebPack also supports some expressions
         //         ("templates" + name + ".jade") will load all *.jade
-        guard let slot =
-                    try? context.slotForModule(require.module, relativeTo: url)
-         else { continue }
+        let slot : Int
+        do {
+          slot = try context.slotForModule(require.module, relativeTo: url)
+        }
+        catch {
+          print("got no slot for \(require.module): \(error)")
+          continue
+        }
         
         tokens[require.idRequire] = .id(idWebpackRequire)
         tokens[require.qsModule]  = .number(Data("\(slot)".utf8))
