@@ -14,9 +14,9 @@ public class WebPack : LoaderContext {
   
   public let config : Configuration
   
-  var resources = [ String : Data ]()
-  var modules   = [ Data ]()
-  var modulePathToIndex = [ String : Int ]()
+  public var resources = [ String : Data ]()
+  var        modules   = [ Data ]()
+  var        modulePathToIndex = [ String : Int ]()
   
   struct FileProcessingInfo {
     let url : URL
@@ -118,7 +118,7 @@ public class WebPack : LoaderContext {
     
     if module.hasPrefix(".") {
       let fileURL = URL.resolve(fileURL: url, filePath: module)
-      if fm.fileExists(atPath: module) { return fileURL }
+      if fm.fileExists(atPath: fileURL.path) { return fileURL }
       
       let dirURL = fileURL.deletingLastPathComponent()
       let fn     = fileURL.lastPathComponent
@@ -137,11 +137,19 @@ public class WebPack : LoaderContext {
       return URL.resolve(fileURL: url, filePath: matches[0])
     }
     
-    // ./node_modules/vue/dist/vue.js
-    let nodeModuleDir = URL.resolve(fileURL: config.baseURL, filePath: "node_modules")
-    let pkgDir = nodeModuleDir
+    
+    // TODO: I think we need to read package.json to determine the proper loc
+    //   ./node_modules/vue/dist/vue.js
+    // vs
+    //   ./node_modules/moment/moment.js
+    let nodeModuleDir = URL.resolve(fileURL: config.baseURL,
+                                    filePath: "node_modules/")
+    var pkgDir = nodeModuleDir
                    .appendingPathComponent(module)
                    .appendingPathComponent("dist")
+    if !fm.fileExists(atPath: pkgDir.path) { // HACK
+      pkgDir = nodeModuleDir.appendingPathComponent(module)
+    }
     
     guard let ls = try? fm.contentsOfDirectory(atPath: pkgDir.path)
      else { throw Error.CouldNotLoadDirectory(pkgDir) }
@@ -331,10 +339,36 @@ extension URL {
     #if swift(>=3.1) // This is really a `if #available(macOS 10.11, *)`
       return URL(fileURLWithPath: path, relativeTo: url)
     #else // Swift 3.0.2
-      guard let url = url, !url.path.isEmpty, !path.hasPrefix("/")
+      guard var url = url, !url.path.isEmpty, !path.hasPrefix("/")
        else { return URL(fileURLWithPath: path) }
       guard !path.isEmpty else { return url }
-      return url.appendingPathComponent(path)
+      
+      // print("resolve \(path) against \(url.path as Optional)")
+      
+      // file:///abc/def/main.js
+      // ./Vue
+      
+      // Funny: Even if the url ends in /, the path may not contain it
+      if !url.absoluteString.hasSuffix("/") { // this is actually what happens
+        // FIXME: should we check isDir in filesystem?
+        url = url.deletingLastPathComponent()
+      }
+      
+      var processedPath = path
+      while processedPath.hasPrefix("../") {
+        let idx = processedPath.index(processedPath.startIndex, offsetBy: 3)
+        processedPath = processedPath.substring(from: idx)
+        url = url.deletingLastPathComponent()
+      }
+      
+      if processedPath.hasPrefix("./") {
+        let idx = processedPath.index(processedPath.startIndex, offsetBy: 2)
+        processedPath = processedPath.substring(from: idx)
+      }
+      
+      let result = url.appendingPathComponent(processedPath)
+      // print("  got: \(processedPath) \(result)")
+      return result
     #endif
   }
 }

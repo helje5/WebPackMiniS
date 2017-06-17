@@ -195,11 +195,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "ZeeZide GmbH";
 				TargetAttributes = {
 					E82D8B7C1EF2C30100D41F22 = {
 						CreatedOnToolsVersion = 8.2.1;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					E82D8BAB1EF2C8ED00D41F22 = {
@@ -376,6 +377,7 @@
 				E82D8B831EF2C30100D41F22 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E82D8BB41EF2C8EE00D41F22 /* Build configuration list for PBXNativeTarget "WebPackMiniTests" */ = {
 			isa = XCConfigurationList;
@@ -384,6 +386,7 @@
 				E82D8BB61EF2C8EE00D41F22 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
