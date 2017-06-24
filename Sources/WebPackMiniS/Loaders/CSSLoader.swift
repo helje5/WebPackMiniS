@@ -51,7 +51,7 @@ open class StyleLoader : WebPackLoader {
          -> UnsafeMutablePointer<UInt8>
     {
       assert(oldCapacity < newCapacity)
-      var newDest = UnsafeMutablePointer<UInt8>.allocate(capacity: newCapacity)
+      let newDest = UnsafeMutablePointer<UInt8>.allocate(capacity: newCapacity)
       newDest.initialize(from: p, count: oldCapacity)
       p.deallocate(capacity: oldCapacity)
       return newDest
