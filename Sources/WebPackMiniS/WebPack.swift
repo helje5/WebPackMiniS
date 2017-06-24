@@ -349,39 +349,49 @@ public class WebPack : LoaderContext {
 extension URL {
   static func resolve(fileURL url: URL?, filePath path: String) -> URL {
     #if swift(>=3.1) // This is really a `if #available(macOS 10.11, *)`
-      return URL(fileURLWithPath: path, relativeTo: url)
+      // we still hit this when compiling w/ SPM
+      if #available(macOS 10.11, *) {
+        return URL(fileURLWithPath: path, relativeTo: url)
+      }
+      else {
+        return _ownResolve(fileURL: url, filePath: path)
+      }
     #else // Swift 3.0.2
-      guard var url = url, !url.path.isEmpty, !path.hasPrefix("/")
-       else { return URL(fileURLWithPath: path) }
-      guard !path.isEmpty else { return url }
-      
-      // print("resolve \(path) against \(url.path as Optional)")
-      
-      // file:///abc/def/main.js
-      // ./Vue
-      
-      // Funny: Even if the url ends in /, the path may not contain it
-      if !url.absoluteString.hasSuffix("/") { // this is actually what happens
-        // FIXME: should we check isDir in filesystem?
-        url = url.deletingLastPathComponent()
-      }
-      
-      var processedPath = path
-      while processedPath.hasPrefix("../") {
-        let idx = processedPath.index(processedPath.startIndex, offsetBy: 3)
-        processedPath = processedPath.substring(from: idx)
-        url = url.deletingLastPathComponent()
-      }
-      
-      if processedPath.hasPrefix("./") {
-        let idx = processedPath.index(processedPath.startIndex, offsetBy: 2)
-        processedPath = processedPath.substring(from: idx)
-      }
-      
-      let result = url.appendingPathComponent(processedPath)
-      // print("  got: \(processedPath) \(result)")
-      return result
+      return _ownResolve(fileURL: url, filePath: path)
     #endif
+  }
+  
+  static func _ownResolve(fileURL url: URL?, filePath path: String) -> URL {
+    guard var url = url, !url.path.isEmpty, !path.hasPrefix("/")
+     else { return URL(fileURLWithPath: path) }
+    guard !path.isEmpty else { return url }
+    
+    // print("resolve \(path) against \(url.path as Optional)")
+    
+    // file:///abc/def/main.js
+    // ./Vue
+    
+    // Funny: Even if the url ends in /, the path may not contain it
+    if !url.absoluteString.hasSuffix("/") { // this is actually what happens
+      // FIXME: should we check isDir in filesystem?
+      url = url.deletingLastPathComponent()
+    }
+    
+    var processedPath = path
+    while processedPath.hasPrefix("../") {
+      let idx = processedPath.index(processedPath.startIndex, offsetBy: 3)
+      processedPath = processedPath.substring(from: idx)
+      url = url.deletingLastPathComponent()
+    }
+    
+    if processedPath.hasPrefix("./") {
+      let idx = processedPath.index(processedPath.startIndex, offsetBy: 2)
+      processedPath = processedPath.substring(from: idx)
+    }
+    
+    let result = url.appendingPathComponent(processedPath)
+    // print("  got: \(processedPath) \(result)")
+    return result
   }
 }
 
