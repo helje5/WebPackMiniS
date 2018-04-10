@@ -253,4 +253,12 @@ class JavaScriptTokenizerTests: XCTestCase {
     XCTAssertEqual(data, genData)
   }
   
+  static var allTests = [
+    ( "testJavaScriptParser", testJavaScriptParser ),
+    ( "testTestDirURL",       testTestDirURL       ),
+    ( "testRegex3",           testRegex3           ),
+    ( "testRegex2",           testRegex2           ),
+    ( "testTokenizeMainJS",   testTokenizeMainJS   ),
+    ( "testRegex",            testRegex            ),
+  ]
 }
