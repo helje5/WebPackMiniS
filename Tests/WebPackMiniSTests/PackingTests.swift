@@ -40,4 +40,8 @@ class PackingTests: XCTestCase {
     
     try wps.regenerate()
   }
+
+  static var allTests = [
+    ( "testTestDirURL", testTestDirURL )
+  ]
 }
