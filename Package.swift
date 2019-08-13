@@ -1,14 +1,14 @@
+// swift-tools-version:4.2
 import PackageDescription
 
 let package = Package(
   name: "WebPackMiniS",
 	
-	exclude: [
-		"WebPackMiniS.xcodeproj",
-		"GNUmakefile",
-		"LICENSE",
-		"README.md",
-		"xcconfig",
-    "TestData"
-	]
+  products: [
+    .library(name: "WebPackMiniS", targets: [ "WebPackMiniS" ])
+  ],
+  targets: [
+    .target(name: "WebPackMiniS")
+  ]
 )
+

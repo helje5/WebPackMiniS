@@ -47,6 +47,7 @@
 		E82D8BBD1EF2C9DF00D41F22 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Base.xcconfig; path = xcconfig/Base.xcconfig; sourceTree = "<group>"; };
 		E82D8BBF1EF2CAB900D41F22 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		E82D8BC11EF2CB2B00D41F22 /* WebPackLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebPackLoader.swift; sourceTree = "<group>"; };
+		E894B1152302D47300AB16BB /* Package@swift-5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Package@swift-5.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +74,7 @@
 			children = (
 				E82D8BA61EF2C64400D41F22 /* README.md */,
 				E82D8BA51EF2C63F00D41F22 /* Package.swift */,
+				E894B1152302D47300AB16BB /* Package@swift-5.swift */,
 				E82D8B961EF2C63900D41F22 /* WebPackMiniS */,
 				E82D8BB71EF2C91B00D41F22 /* WebPackMiniSTests */,
 				E82D8BA71EF2C8D200D41F22 /* TestData */,
@@ -195,27 +197,29 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = "ZeeZide GmbH";
 				TargetAttributes = {
 					E82D8B7C1EF2C30100D41F22 = {
 						CreatedOnToolsVersion = 8.2.1;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1100;
 						ProvisioningStyle = Automatic;
 					};
 					E82D8BAB1EF2C8ED00D41F22 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 4GXF3JAMM4;
+						LastSwiftMigration = 1100;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
 			buildConfigurationList = E82D8B781EF2C30100D41F22 /* Build configuration list for PBXProject "WebPackMiniS" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = E82D8B741EF2C30100D41F22;
 			productRefGroup = E82D8B7E1EF2C30100D41F22 /* Products */;
@@ -340,8 +344,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.alwaysrightinstitute.webpack.WebPackMiniTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -354,8 +356,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alwaysrightinstitute.webpack.WebPackMiniTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_COMPILATION_MODE = wholemodule;
 			};
 			name = Release;
 		};

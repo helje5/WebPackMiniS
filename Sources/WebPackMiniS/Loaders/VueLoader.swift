@@ -85,7 +85,11 @@ extension String {
       sidx = self.index(after: sidx)
     }
     
-    return self.substring(with: sidx..<er.lowerBound)
+    #if swift(>=4.2)
+      return String(self[sidx..<er.lowerBound])
+    #else
+      return self.substring(with: sidx..<er.lowerBound)
+    #endif
   }
   
 }

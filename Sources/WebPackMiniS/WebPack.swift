@@ -380,13 +380,21 @@ extension URL {
     var processedPath = path
     while processedPath.hasPrefix("../") {
       let idx = processedPath.index(processedPath.startIndex, offsetBy: 3)
-      processedPath = processedPath.substring(from: idx)
+      #if swift(>=4.2)
+        processedPath = String(processedPath[idx...])
+      #else
+        processedPath = processedPath.substring(from: idx)
+      #endif
       url = url.deletingLastPathComponent()
     }
     
     if processedPath.hasPrefix("./") {
       let idx = processedPath.index(processedPath.startIndex, offsetBy: 2)
-      processedPath = processedPath.substring(from: idx)
+      #if swift(>=4.2)
+        processedPath = String(processedPath[idx...])
+      #else
+        processedPath = processedPath.substring(from: idx)
+      #endif
     }
     
     let result = url.appendingPathComponent(processedPath)

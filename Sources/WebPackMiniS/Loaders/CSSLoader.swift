@@ -53,7 +53,11 @@ open class StyleLoader : WebPackLoader {
       assert(oldCapacity < newCapacity)
       let newDest = UnsafeMutablePointer<UInt8>.allocate(capacity: newCapacity)
       newDest.initialize(from: p, count: oldCapacity)
-      p.deallocate(capacity: oldCapacity)
+      #if swift(>=4.2)
+        p.deallocate()
+      #else
+        p.deallocate(capacity: oldCapacity)
+      #endif
       return newDest
     }
     
@@ -64,6 +68,33 @@ open class StyleLoader : WebPackLoader {
     
     
     // still super-slow, maybe it is the add
+    #if swift(>=5)
+    data.withUnsafeBytes { (p : UnsafeRawBufferPointer) -> Void in
+      var ptr = p.baseAddress!.assumingMemoryBound(to: UInt8.self)
+      for _ in 0..<count {
+        if (pos + 2) >= capacity {
+          let newCapacity = capacity + 512
+          dest = realloc(dest, oldCapacity: capacity, newCapacity: newCapacity)
+          capacity = newCapacity
+        }
+        
+        switch ptr.pointee {
+          case 92 /* \ */, 39 /* ' */:
+            dest[pos] = 92;          pos += 1 /* \ */
+            dest[pos] = ptr.pointee; pos += 1
+          case 10:
+            dest[pos] = 92;          pos += 1 /* \ */
+            dest[pos] = 110;         pos += 1 /* n */
+          case 13:
+            dest[pos] = 92;          pos += 1 /* \ */
+            dest[pos] = 114;         pos += 1 /* r */
+          default:
+            dest[pos] = ptr.pointee; pos += 1
+        }
+        ptr += 1
+      }
+    }
+    #else
     data.withUnsafeBytes { (p : UnsafePointer<UInt8>) -> Void in
       var ptr = p
       for _ in 0..<count {
@@ -90,10 +121,15 @@ open class StyleLoader : WebPackLoader {
       }
     }
     // print("generated data \(Date()).")
+    #endif
     
     // TODO: copies, keep the stuff
     var js = Data(buffer: UnsafeBufferPointer(start: dest, count: pos))
-    dest.deallocate(capacity: capacity)
+    #if swift(>=4.2)
+      dest.deallocate()
+    #else
+      dest.deallocate(capacity: capacity)
+    #endif
     
     // TODO: add to buffer to avoid reallocs
     js.add("';\n")
