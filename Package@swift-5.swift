@@ -8,6 +8,7 @@ let package = Package(
     .library(name: "WebPackMiniS", targets: [ "WebPackMiniS" ])
   ],
   targets: [
-    .target(name: "WebPackMiniS")
+    .target(name: "WebPackMiniS"),
+    .testTarget(name: "WebPackMiniSTests", dependencies: [ "WebPackMiniS" ])
   ]
 )
